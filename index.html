@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="FixLink connects customers with trusted technical professionals."
+    >
+
+    <title>FixLink | Find the Right Professional</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header class="navbar">
+
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            <span class="logo-mark">F</span>
+            FixLink
+        </a>
+
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#professionals">Professionals</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                class="btn btn-outline"
+                onclick="openLogin('customer')"
+            >
+                Sign In
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="openRequest()"
+            >
+                Request a Professional
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span></span>
+                Technical services made simple
+            </div>
+
+            <h1>
+                Tell us the problem.
+                <span>We'll find the right professional.</span>
+            </h1>
+
+            <p class="hero-text">
+                From electrical work and solar installation
+                to CCTV, smart locks and home automation,
+                FixLink connects you with the right
+                professional for the job.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="btn btn-primary btn-large"
+                    onclick="openRequest()"
+                >
+                    Request a Professional
+                </button>
+
+                <button
+                    class="btn btn-light btn-large"
+                    onclick="scrollToHow()"
+                >
+                    How FixLink Works
+                </button>
+
+            </div>
+
+            <div class="trust-points">
+
+                <span>✓ Verified professionals</span>
+                <span>✓ Transparent pricing</span>
+                <span>✓ Multiple service categories</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO REQUEST CARD -->
+
+        <div class="hero-card">
+
+            <div class="hero-card-header">
+
+                <div>
+                    <small>LIVE REQUEST</small>
+                    <h3>Need technical help?</h3>
+                </div>
+
+                <div class="online-dot"></div>
+
+            </div>
+
+            <div class="problem-preview">
+
+                <div class="problem-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <strong>
+                        Customer needs help
+                    </strong>
+
+                    <p>
+                        "My lights keep going off..."
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="matching-box">
+
+                <div class="matching-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Finding the right professional
+                    </strong>
+
+                    <p>
+                        FixLink is matching the request
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="fake-map">
+
+                <div class="map-road road-one"></div>
+                <div class="map-road road-two"></div>
+                <div class="map-road road-three"></div>
+
+                <div class="map-pin customer-pin">
+                    C
+                </div>
+
+                <div class="map-pin technician-pin">
+                    P
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section
+    class="section services-section"
+    id="services"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">
+                OUR SERVICES
+            </span>
+
+            <h2>
+                What can we help you with?
+            </h2>
+
+            <p>
+                You don't need to know exactly what the
+                problem is. Just tell us what is happening.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <button
+                class="service-card"
+                onclick="chooseService('Electrical')"
+            >
+
+                <div class="service-icon">
+                    ⚡
+                </div>
+
+                <h3>Electrical</h3>
+
+                <p>
+                    Wiring, sockets, lighting,
+                    faults and installations.
+                </p>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="chooseService('Solar & Inverter')"
+            >
+
+                <div class="service-icon">
+                    ☀️
+                </div>
+
+                <h3>Solar & Inverter</h3>
+
+                <p>
+                    Solar panels, batteries,
+                    inverters and power systems.
+                </p>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="chooseService('CCTV & Security')"
+            >
+
+                <div class="service-icon">
+                    📹
+                </div>
+
+                <h3>CCTV & Security</h3>
+
+                <p>
+                    Cameras, NVRs, access control
+                    and security systems.
+                </p>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="chooseService('Smart Locks & Access Control')"
+            >
+
+                <div class="service-icon">
+                    🔐
+                </div>
+
+                <h3>Smart Locks</h3>
+
+                <p>
+                    Smart locks, door access,
+                    intercoms and control systems.
+                </p>
+
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="chooseService('Home Automation')"
+            >
+
+                <div class="service-icon">
+                    🏠
+                </div>
+
+                <h3>Home Automation</h3>
+
+                <p>
+                    Smart homes, sensors,
+                    lighting and automation.
+                </p>
+
+            </button>
+
+
+            <button
+                class="service-card service-help"
+                onclick="chooseService('I need help identifying the service')"
+            >
+
+                <div class="service-icon">
+                    ❓
+                </div>
+
+                <h3>I Don't Know</h3>
+
+                <p>
+                    Describe the problem and
+                    we'll help identify the right service.
+                </p>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REQUEST SECTION
+========================= -->
+
+<section
+    class="section request-section"
+    id="request"
+>
+
+    <div class="container request-container">
+
+        <div class="request-intro">
+
+            <span class="eyebrow">
+                REQUEST HELP
+            </span>
+
+            <h2>
+                Tell us what you need.
+            </h2>
+
+            <p>
+                Don't worry if you don't know the
+                technical name. Explain the problem
+                in your own words.
+            </p>
+
+            <div class="request-benefit">
+
+                <div>✓</div>
+
+                <p>
+                    FixLink will help route your request
+                    to the appropriate professional.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="request-form-card">
+
+            <form id="requestForm">
+
+                <div class="form-group">
+
+                    <label>
+                        What do you need help with?
+                    </label>
+
+                    <select
+                        id="service"
+                        required
+                    >
+
+                        <option value="">
+                            Select a service
+                        </option>
+
+                        <option value="Electrical">
+                            Electrical
+                        </option>
+
+                        <option value="Solar & Inverter">
+                            Solar & Inverter
+                        </option>
+
+                        <option value="CCTV & Security">
+                            CCTV & Security
+                        </option>
+
+                        <option value="Smart Locks & Access Control">
+                            Smart Locks & Access Control
+                        </option>
+
+                        <option value="Home Automation">
+                            Home Automation
+                        </option>
+
+                        <option value="I need help identifying the service">
+                            I don't know — help me
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Describe the problem
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="5"
+                        placeholder="Example: My house lights go off every few minutes and come back on..."
+                        required
+                    ></textarea>
+
+                    <small>
+                        Explain it in normal words. You don't
+                        need technical knowledge.
+                    </small>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Job location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="e.g. Abule-Oja, Lagos"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Preferred time
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="preferredTime"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Your name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="080XXXXXXXX"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-full btn-large"
+                >
+                    Find a Professional
+                </button>
+
+
+                <p class="form-note">
+                    Your request will be reviewed and
+                    matched with an appropriate professional.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section
+    class="section how-section"
+    id="how-it-works"
+>
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">
+                HOW IT WORKS
+            </span>
+
+            <h2>
+                Technical help without the stress.
+            </h2>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Tell us the problem
+                </h3>
+
+                <p>
+                    Describe what is happening in
+                    your own words.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    We find the right professional
+                </h3>
+
+                <p>
+                    Your request is matched with
+                    a suitable service provider.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Inspection & quotation
+                </h3>
+
+                <p>
+                    For complex jobs, the professional
+                    can inspect before giving a quote.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Get the job done
+                </h3>
+
+                <p>
+                    Approve the price and let the
+                    professional complete the work.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================= -->
+
+<section class="section pricing-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">
+                FLEXIBLE BILLING
+            </span>
+
+            <h2>
+                The right pricing for the job.
+            </h2>
+
+            <p>
+                Different jobs require different
+                pricing methods.
+            </p>
+
+        </div>
+
+
+        <div class="pricing-grid">
+
+            <div class="pricing-card">
+
+                <div class="pricing-icon">
+                    ₦
+                </div>
+
+                <h3>
+                    Fixed Quote
+                </h3>
+
+                <p>
+                    Best for predictable jobs where
+                    the scope is already clear.
+                </p>
+
+            </div>
+
+
+            <div class="pricing-card">
+
+                <div class="pricing-icon">
+                    ⏱
+                </div>
+
+                <h3>
+                    Hourly Labour
+                </h3>
+
+                <p>
+                    Suitable for troubleshooting
+                    and open-ended technical work.
+                </p>
+
+            </div>
+
+
+            <div class="pricing-card">
+
+                <div class="pricing-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    Inspection
+                </h3>
+
+                <p>
+                    A professional can inspect the
+                    problem before preparing a quote.
+                </p>
+
+            </div>
+
+
+            <div class="pricing-card">
+
+                <div class="pricing-icon">
+                    📦
+                </div>
+
+                <h3>
+                    Materials
+                </h3>
+
+                <p>
+                    Materials can be listed separately
+                    from professional labour.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROFESSIONALS
+========================= -->
+
+<section
+    class="section professionals-section"
+    id="professionals"
+>
+
+    <div class="container professional-banner">
+
+        <div>
+
+            <span class="eyebrow">
+                FOR PROFESSIONALS
+            </span>
+
+            <h2>
+                Get more technical jobs.
+            </h2>
+
+            <p>
+                Join FixLink and connect your skills
+                with customers who need your services.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-primary btn-large"
+            onclick="openLogin('professional')"
+        >
+            Join as a Professional
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <div class="logo footer-logo">
+                <span class="logo-mark">F</span>
+                FixLink
+            </div>
+
+            <p>
+                Connecting customers with trusted
+                technical professionals.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="#services">
+                Electrical
+            </a>
+
+            <a href="#services">
+                Solar & Inverter
+            </a>
+
+            <a href="#services">
+                CCTV & Security
+            </a>
+
+            <a href="#services">
+                Smart Home
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Company
+            </h4>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#professionals">
+                Professionals
+            </a>
+
+            <a href="#">
+                About FixLink
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 FixLink. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="loginModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            onclick="closeLogin()"
+        >
+            ×
+        </button>
+
+        <h2>
+            Welcome to FixLink
+        </h2>
+
+        <p>
+            This is the account entry point for
+            customers and professionals.
+        </p>
+
+        <input
+            type="text"
+            id="loginName"
+            placeholder="Your name"
+        >
+
+        <button
+            class="btn btn-primary btn-full"
+            onclick="loginUser()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NOTIFICATION
+========================= -->
+
+<div
+    id="notification"
+    class="notification"
+></div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
