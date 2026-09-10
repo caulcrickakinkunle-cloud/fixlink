@@ -1,1 +1,215 @@
-javascript /* =========================================================    FIXLINK VERSION 2    APP.JS    ========================================================= */   /* =========================    GLOBAL VARIABLES ========================= */  let selectedService = "";  const STORAGE_KEY = "fixlink_request";   /* =========================    NOTIFICATION ========================= */  function showNotification(message) {      const notification =         document.getElementById("notification");      if (!notification) return;      notification.textContent = message;      notification.classList.add("show");      setTimeout(() => {          notification.classList.remove("show");      }, 3500); }   /* =========================    OPEN REQUEST FORM ========================= */  function openRequest() {      const requestSection =         document.getElementById("request");      if (!requestSection) return;      requestSection.scrollIntoView({         behavior: "smooth"     });      setTimeout(() => {          const service =             document.getElementById("service");          if (service) {             service.focus();         }      }, 700); }   /* =========================    CHOOSE SERVICE ========================= */  function chooseService(serviceName) {      selectedService = serviceName;      const serviceSelect =         document.getElementById("service");      if (serviceSelect) {          serviceSelect.value =             serviceName;     }      openRequest();      showNotification(         `${serviceName} selected. Tell us what you need.`     ); }   /* =========================    HOW IT WORKS ========================= */  function scrollToHow() {      const section =         document.getElementById("how-it-works");      if (!section) return;      section.scrollIntoView({         behavior: "smooth"     }); }   /* =========================    LOGIN ========================= */  let loginType = "customer";   function openLogin(type = "customer") {      loginType = type;      const modal =         document.getElementById("loginModal");      const modalTitle =         modal?.querySelector("h2");      const modalText =         modal?.querySelector("p");      const loginInput =         document.getElementById("loginName");      if (!modal) return;       if (type === "professional") {          if (modalTitle) {             modalTitle.textContent =                 "Join FixLink as a Professional";         }          if (modalText) {             modalText.textContent =                 "Enter your name to continue to the professional registration process.";         }          if (loginInput) {             loginInput.placeholder =                 "Professional / business name";         }      } else {          if (modalTitle) {             modalTitle.textContent =                 "Welcome to FixLink";         }          if (modalText) {             modalText.textContent =                 "Enter your name to continue as a customer.";         }          if (loginInput) {             loginInput.placeholder =                 "Your name";         }     }      modal.classList.add("active");      setTimeout(() => {          if (loginInput) {             loginInput.focus();         }      }, 200); }   function closeLogin() {      const modal =         document.getElementById("loginModal");      if (modal) {         modal.classList.remove("active");     } }   /* =========================    LOGIN USER ========================= */  function loginUser() {      const input =         document.getElementById("loginName");      if (!input) return;      const name =         input.value.trim();      if (!name) {          showNotification(             "Please enter your name."         );          input.focus();          return;     }       localStorage.setItem(         "fixlink_user",         JSON.stringify({             name: name,             type: loginType         })     );       closeLogin();       if (loginType === "professional") {          showNotification(             `Welcome ${name}. Professional registration will be available in the next stage.`         );      } else {          showNotification(             `Welcome ${name}! Your FixLink account is ready for the demo.`         );     } }   /* =========================    CUSTOMER REQUEST FORM ========================= */  document.addEventListener(     "DOMContentLoaded",     function () {          const form =             document.getElementById(                 "requestForm"             );          if (!form) return;           form.addEventListener(             "submit",             function (event) {                  event.preventDefault();                   const service =                     document.getElementById(                         "service"                     ).value.trim();                   const description =                     document.getElementById(                         "description"                     ).value.trim();                   const location =                     document.getElementById(                         "location"                     ).value.trim();                   const preferredTime =                     document.getElementById(                         "preferredTime"                     ).value;                   const customerName =                     document.getElementById(                         "customerName"                     ).value.trim();                   const phone =                     document.getElementById(                         "phone"                     ).value.trim();                   /* -------------------------                    VALIDATION                 ------------------------- */                  if (!service) {                      showNotification(                         "Please select a service."                     );                      return;                 }                   if (!description) {                      showNotification(                         "Please describe the problem."                     );                      return;                 }                   if (!location) {                      showNotification(                         "Please enter the job location."                     );                      return;                 }                   if (!preferredTime) {                      showNotification(                         "Please select your preferred time."                     );                      return;                 }                   if (!customerName) {                      showNotification(                         "Please enter your name."                     );                      return;                 }                   if (!phone) {                      showNotification(                         "Please enter your phone number."                     );                      return;                 }                   /* -------------------------                    CREATE REQUEST                 ------------------------- */                  const request = {                      id:                         "FL-" +                         Date.now(),                      service:                         service,                      description:                         description,                      location:                         location,                      preferredTime:                         preferredTime,                      customerName:                         customerName,                      phone:                         phone,                      status:                         "Request received",                      createdAt:                         new Date().toISOString()                 };                   /* -------------------------                    SAVE REQUEST                 ------------------------- */                  localStorage.setItem(                     STORAGE_KEY,                     JSON.stringify(request)                 );                   /* -------------------------                    SUCCESS MESSAGE                 ------------------------- */                  showNotification(                     "Request received! FixLink is finding the right professional."                 );                   /* -------------------------                    RESET FORM                 ------------------------- */                  form.reset();                   /* -------------------------                    SIMULATE MATCHING                 ------------------------- */                  setTimeout(                     function () {                          updateRequestStatus(                             "Finding a suitable professional"                         );                          showNotification(                             "FixLink is checking available professionals near the job location."                         );                      },                     2500                 );                   setTimeout(                     function () {                          updateRequestStatus(                             "Professional match found"                         );                          showNotification(                             "A suitable professional has been matched to your request."                         );                      },                     5500                 );              }         );      } );   /* =========================    UPDATE REQUEST STATUS ========================= */  function updateRequestStatus(status) {      const savedRequest =         localStorage.getItem(             STORAGE_KEY         );      if (!savedRequest) return;       try {          const request =             JSON.parse(savedRequest);          request.status =             status;          localStorage.setItem(             STORAGE_KEY,             JSON.stringify(request)         );       } catch (error) {          console.log(             "Unable to update request."         );      } }   /* =========================    LOAD SAVED REQUEST ========================= */  document.addEventListener(     "DOMContentLoaded",     function () {          const savedRequest =             localStorage.getItem(                 STORAGE_KEY             );          if (!savedRequest) return;           try {              const request =                 JSON.parse(savedRequest);              console.log(                 "FixLink active request:",                 request             );          } catch (error) {              console.log(                 "No valid FixLink request found."             );          }      } );   /* =========================    CLOSE MODAL    WHEN CLICKING OUTSIDE ========================= */  window.addEventListener(     "click",     function (event) {          const modal =             document.getElementById(                 "loginModal"             );          if (             modal &&             event.target === modal         ) {              closeLogin();          }      } );   /* =========================    ESC KEY ========================= */  document.addEventListener(     "keydown",     function (event) {          if (event.key === "Escape") {              closeLogin();          }      } );   /* =========================    NAVIGATION ========================= */  document.addEventListener(     "DOMContentLoaded",     function () {          const links =             document.querySelectorAll(                 'a[href^="#"]'             );           links.forEach(             function (link) {                  link.addEventListener(                     "click",                     function (event) {                          const targetId =                             this.getAttribute(                                 "href"                             );                           if (                             !targetId ||                             targetId === "#"                         ) {                             return;                         }                           const target =                             document.querySelector(                                 targetId                             );                           if (!target) {                             return;                         }                           event.preventDefault();                           target.scrollIntoView({                             behavior: "smooth"                         });                      }                 );              }         );      } );   /* =========================    FIXLINK STARTUP MESSAGE ========================= */  console.log( ` ========================================           FIXLINK VERSION 2 ========================================  Customer request system: READY  Service categories: - Electrical - Solar & Inverter - CCTV & Security - Smart Locks - Home Automation - Other  Customer can: ✓ Describe a problem ✓ Select a service ✓ Enter location ✓ Select preferred time ✓ Enter contact details ✓ Submit a service request  Professional matching: DEMO MODE  Database: NOT CONNECTED YET  Payments: NOT CONNECTED YET  Admin dashboard: COMING NEXT  ======================================== ` ); 
+const SUPABASE_URL = "https://phxchzjvziskjjovqvlf.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "sb_publishable_xNm6ENqQz6MinoNo0kB7wA_h0d7ZSo3";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+let selectedService = "";
+let loginType = "customer";
+
+function showNotification(message) {
+  const notification = document.getElementById("notification");
+
+  if (!notification) return;
+
+  notification.textContent = message;
+  notification.classList.add("show");
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3500);
+}
+
+function openRequest() {
+  const section = document.getElementById("request");
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+}
+
+function chooseService(serviceName) {
+  selectedService = serviceName;
+
+  const serviceInput = document.getElementById("service");
+
+  if (serviceInput) {
+    serviceInput.value = serviceName;
+  }
+
+  openRequest();
+}
+
+function scrollToHow() {
+  const section = document.getElementById("how");
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+}
+
+function openLogin(type = "customer") {
+  loginType = type;
+
+  const modal = document.getElementById("loginModal");
+
+  if (modal) {
+    modal.classList.add("show");
+  }
+}
+
+function closeLogin() {
+  const modal = document.getElementById("loginModal");
+
+  if (modal) {
+    modal.classList.remove("show");
+  }
+}
+
+async function loginUser() {
+  const email = document.getElementById("loginEmail")?.value.trim();
+  const password = document.getElementById("loginPassword")?.value;
+
+  if (!email || !password) {
+    showNotification("Please enter your email and password.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    showNotification(error.message);
+    return;
+  }
+
+  showNotification("Login successful!");
+
+  closeLogin();
+
+  console.log("Logged in user:", data.user);
+}
+
+async function signUpUser() {
+  const name = document.getElementById("signupName")?.value.trim();
+  const phone = document.getElementById("signupPhone")?.value.trim();
+  const email = document.getElementById("signupEmail")?.value.trim();
+  const password = document.getElementById("signupPassword")?.value;
+
+  if (!name || !phone || !email || !password) {
+    showNotification("Please complete all signup fields.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        full_name: name,
+        phone: phone,
+        user_type: loginType
+      }
+    }
+  });
+
+  if (error) {
+    showNotification(error.message);
+    return;
+  }
+
+  showNotification(
+    "Account created! Check your email if confirmation is required."
+  );
+
+  console.log("New user:", data.user);
+}
+
+async function submitRequest(event) {
+  event.preventDefault();
+
+  const service = document.getElementById("service")?.value.trim();
+  const description = document.getElementById("description")?.value.trim();
+  const location = document.getElementById("location")?.value.trim();
+  const preferredTime =
+    document.getElementById("preferredTime")?.value.trim();
+
+  if (!service || !description || !location || !preferredTime) {
+    showNotification("Please complete all request fields.");
+    return;
+  }
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if (!user) {
+    showNotification("Please log in before submitting a request.");
+    openLogin("customer");
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from("service_requests")
+    .insert([
+      {
+        customer_id: user.id,
+        service: service,
+        description: description,
+        location: location,
+        preferred_time: preferredTime,
+        status: "pending"
+      }
+    ])
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    showNotification("Unable to submit request. Please try again.");
+    return;
+  }
+
+  showNotification("Request submitted successfully! 🔥");
+
+  console.log("Request created:", data);
+
+  const form = document.getElementById("requestForm");
+
+  if (form) {
+    form.reset();
+  }
+
+  selectedService = "";
+}
+
+async function checkUser() {
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+  if (user) {
+    console.log("Current FixLink user:", user.email);
+  } else {
+    console.log("No FixLink user is currently logged in.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const requestForm = document.getElementById("requestForm");
+
+  if (requestForm) {
+    requestForm.addEventListener("submit", submitRequest);
+  }
+
+  checkUser();
+
+  console.log("FixLink connected to Supabase.");
+});
