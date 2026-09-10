@@ -70,7 +70,51 @@ function closeLogin() {
     modal.classList.remove("show");
   }
 }
+function showSignup() {
+  const loginSection = document.getElementById("loginSection");
+  const signupSection = document.getElementById("signupSection");
+  const title = document.getElementById("authTitle");
+  const subtitle = document.getElementById("authSubtitle");
 
+  if (loginSection) {
+    loginSection.style.display = "none";
+  }
+
+  if (signupSection) {
+    signupSection.style.display = "block";
+  }
+
+  if (title) {
+    title.textContent = "Create your FixLink account";
+  }
+
+  if (subtitle) {
+    subtitle.textContent = "Join FixLink and get the right professional";
+  }
+}
+
+function showLogin() {
+  const loginSection = document.getElementById("loginSection");
+  const signupSection = document.getElementById("signupSection");
+  const title = document.getElementById("authTitle");
+  const subtitle = document.getElementById("authSubtitle");
+
+  if (signupSection) {
+    signupSection.style.display = "none";
+  }
+
+  if (loginSection) {
+    loginSection.style.display = "block";
+  }
+
+  if (title) {
+    title.textContent = "Welcome to FixLink";
+  }
+
+  if (subtitle) {
+    subtitle.textContent = "Sign in to continue";
+  }
+}
 async function loginUser() {
   const email = document.getElementById("loginEmail")?.value.trim();
   const password = document.getElementById("loginPassword")?.value;
@@ -115,7 +159,7 @@ async function signUpUser() {
       data: {
         full_name: name,
         phone: phone,
-        user_type: loginType
+        user_type: document.getElementById("signupUserType").value
       }
     }
   });
