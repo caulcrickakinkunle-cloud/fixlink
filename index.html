@@ -884,15 +884,11 @@
 
 </footer>
 
-
 <!-- =========================
-     LOGIN MODAL
+     LOGIN / SIGNUP MODAL
 ========================= -->
 
-<div
-    class="modal"
-    id="loginModal"
->
+<div class="modal" id="loginModal">
 
     <div class="modal-card">
 
@@ -903,27 +899,173 @@
             ×
         </button>
 
-        <h2>
-            Welcome to FixLink
-        </h2>
+        <div class="auth-header">
 
-        <p>
-            This is the account entry point for
-            customers and professionals.
-        </p>
+            <h2 id="authTitle">
+                Welcome to FixLink
+            </h2>
 
-        <input
-            type="text"
-            id="loginName"
-            placeholder="Your name"
+            <p id="authSubtitle">
+                Sign in to continue
+            </p>
+
+        </div>
+
+
+        <!-- SIGN IN -->
+
+        <div id="loginSection">
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                >
+
+            </div>
+
+
+            <button
+                class="btn btn-primary btn-full"
+                onclick="loginUser()"
+            >
+                Sign In
+            </button>
+
+
+            <p class="auth-switch">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    onclick="showSignup()"
+                >
+                    Create Account
+                </button>
+
+            </p>
+
+        </div>
+
+
+        <!-- SIGN UP -->
+
+        <div
+            id="signupSection"
+            style="display:none;"
         >
 
-        <button
-            class="btn btn-primary btn-full"
-            onclick="loginUser()"
-        >
-            Continue
-        </button>
+            <div class="form-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Enter your full name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="signupPhone"
+                    placeholder="080XXXXXXXX"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create a password"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Account Type</label>
+
+                <select id="signupUserType">
+
+                    <option value="customer">
+                        Customer
+                    </option>
+
+                    <option value="professional">
+                        Professional
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary btn-full"
+                onclick="signUpUser()"
+            >
+                Create Account
+            </button>
+
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    onclick="showLogin()"
+                >
+                    Sign In
+                </button>
+
+            </p>
+
+        </div>
 
     </div>
 
